@@ -1,11 +1,11 @@
-package rotas
+package routes
 
 import (
 	"api/src/controlers"
 	"net/http"
 )
 
-var rotasUsuarios = []Rota{
+var rotesUsers = []Route{
 	{
 		URI:                    "/usuarios",
 		Method:                 http.MethodPost,

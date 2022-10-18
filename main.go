@@ -10,10 +10,9 @@ import (
 
 func main() {
 	config.Load()
-	fmt.Println(config.ConnectionDBString)
-
-	fmt.Println("Rodando API!")
 	r := router.Generate()
+
+	fmt.Printf("Listening on gateway %d", config.Gateway)
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", config.Gateway), r))
 }

@@ -1,9 +1,32 @@
 package controlers
 
-import "net/http"
+import (
+	"api/src/banco"
+	"api/src/models"
+	"api/src/repositories"
+	"encoding/json"
+	"io/ioutil"
+	"log"
+	"net/http"
+)
 
+//Ler o request.body e colocar dentro de um struct
 func CreateUser(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Create user"))
+	bodyRequest, erro := ioutil.ReadAll(r.Body)
+	if erro != nil {
+		log.Fatal(erro)
+	}
+
+	var user models.User
+	if erro = json.Unmarshal(bodyRequest, &user); erro != nil {
+		log.Fatal(erro)
+	}
+	db, erro := banco.Connect()
+	if erro != nil {
+		log.Fatal(erro)
+	}
+	repository := repositories.NewUserRepository(db)
+	repository.Create(user)
 }
 func SearchAllUser(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Searching all users"))

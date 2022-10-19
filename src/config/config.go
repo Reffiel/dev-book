@@ -16,7 +16,7 @@ var (
 	Gateway = 0
 )
 
-//carregar vai inicializar as variáveis de ambiente
+//Load vai inicializar as variáveis de ambiente
 func Load() {
 	var erro error
 
